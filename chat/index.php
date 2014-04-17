@@ -4,20 +4,65 @@
         <title>JQUERY UI</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		
-		 <link href="../jquery/css/ui-darkness/jquery-ui-1.10.4.custom.css" rel="stylesheet">
+		 <link href="css/ui-lightness/jquery-ui-1.10.4.custom.css" rel="stylesheet">
 
-		<script src="../jquery/jquery-1.11.0.min.js"></script>
-		<script src="../jquery/js/jquery-ui-1.10.4.custom.js"></script>
+		<script src="js/jquery-1.10.2.js"></script>
+		<script src="js/jquery-ui-1.10.4.custom.js"></script>
 	
         <script type="text/javascript">
             $(function(){
-			get_messages();
+			
+				get_messages();
+			
+				//get_new_messages();
+			
             });
+
+//$sQuery = "SELECT MAX(id_mensaje) AS maximo_id FROM mensaje";
+
+$(document).ready(function(){
+
+	setInterval(function(){
+	
+	//get_new_messages();
+	
+	},5000);
+	
+});
+
+
+
+
+function get_new_messages(){
+	
+	var value_rand = (-0.5)+(Math.random()*(100.99));
+	
+	$.ajax({
+		url:'new_messages.php', 
+		type: 'GET',
+		dataType: 'json',
+		data: {
+               "saludo": "hola", "rand" : value_rand
+        },
+		
+		success: function(answer){
+		
+			$("#container_messages").append(answer.content);
+				//$("#accordion").html(data);
+		},
+		
+		error:function(){
+			 alert("Lo sentimos el servidor tiene problemas intente mas tarde");
+		}
+	});
+	
+}
+
 
         </script>
 
-<script>
-
+<script type="text/javascript">
+/*
 function get_messages_by_date(date)
 {
 	$.get( "newspaperbydate.php",
@@ -37,15 +82,14 @@ function get_messages_by_date(date)
 					$("#container_dialog").css("display", "block");
 					show_dialog();
 				}
-				
-
 			
 				},'json');
 }
+*/
 </script>
 
 	 
-	<script>
+	<script type="text/javascript">
 	
 	function get_messages()
 	{
@@ -54,13 +98,33 @@ function get_messages_by_date(date)
 			type: 'GET',
 			dataType: 'json',
 			success: function(answer){
+			
 			$("#container_messages").append(answer.content)
+			/*		$("#container_dialog").css("display", "block");
+					show_dialog();				
+					$("#container_news").remove();
+					$("#message").append(respuesta.message);
+					$("#container_news").tabs();
+			*/	
+			//alert(respuesta.content);
+			
+				
 				},
 					error:function(){
 						alert("ERROR");
 					}
 				});
 	}
+	/*
+	$(document).ready(function()
+{
+    var refreshId = setInterval( function() 
+    {
+        var r = (-0.5)+(Math.random()*(1000.99));
+        $('#img-container').load('images/gallery/best/random.php?'+r);
+    }, 5000);
+});
+	*/
 	</script>
 	
 	<style>
@@ -69,6 +133,19 @@ function get_messages_by_date(date)
 		margin: 50px;
 	}
 	
+	/*#dialog-link {
+		padding: .4em 1em .4em 20px;
+		text-decoration: none;
+		position: relative;
+		display: none;
+	}*/
+	/*#dialog-link span.ui-icon {
+		margin: 0 5px 0 0;
+		position: absolute;
+		left: .2em;
+		top: 50%;
+		margin-top: -8px;
+	}*/
 	#icons {
 		margin: 0;
 		padding: 0;
@@ -95,6 +172,25 @@ function get_messages_by_date(date)
 	#container_dialog{
 	display:none;
 	}
+	#container_messages{
+		width:200px;
+		height:300px;
+		background-color:yellow;
+	}
+	/*
+	#container_border_message{
+		widht:200px;
+		height:20px;
+		background-color:red;
+	}
+	*/
+	/*
+	#container_on_message{
+		widht: 180px;
+		height:18px;
+		background-color:black;
+	}
+	*/
 	/*
 	#dialog{
 	display:none;
@@ -104,33 +200,24 @@ function get_messages_by_date(date)
     </head>
     <body>
 
-<input type="button" id="all_news" value="All news"/>
 
 		<div id="container_messages">
 		</div>
 		
-
-	
-
-<div id="result"></div>
-
-<div id="dialog" title="Add comment">
+<div id="div_form_message">
 <form action="save_message.php" id="form_message">
 	<p>
 		Message <br />
-		<textarea type="text" id="TxtMessage" name="TxtMessage" cols="40" rows="2" ></textarea>
+		<!-- cols="40" rows="2" -->
+		<!-- <div id="container_border_message"> -->
+			<textarea type="text" id="TxtMessage" name="TxtMessage" cols="35" rows="2" ></textarea> 
+		<!-- </div> -->
 		<input type="submit" value="Save">
 	</p>
 </form>
-
 </div>
 
-		<!--<h2 class="demoHeaders">Comments</h2>-->
-		<!--
-        <div id="accordion">
-        </div>
-		-->
-		<script>
+		<script type="text/javascript">
 
 // Attach a submit handler to the form
 $( "#form_message" ).submit(function( event ) {
@@ -142,15 +229,19 @@ $( "#form_message" ).submit(function( event ) {
   var $form = $( this ),
 	message = $form.find( "textarea[name='TxtMessage']" ).val(),
     url = $form.attr( "action" );
-  $.post( url,
-		{ TxtMessage: message },
-		function(answer) {
-			
-			$("#TxtMessage").val("");
-			
-			$("#container_messages").append(answer.message);
-			//alert(answer.message);
-		},'json');
+	
+	if(message!=""){
+	
+		  $.post( url,
+				{ TxtMessage: message },
+				function(answer) {
+					
+					$("#TxtMessage").val("");
+					
+					$("#container_messages").append(answer.message);
+					
+				},'json');
+		}
 		
 });
 
