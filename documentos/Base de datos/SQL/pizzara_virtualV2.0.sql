@@ -42,7 +42,7 @@ CREATE  TABLE IF NOT EXISTS `usuario` (
   `id_usuario` INT NOT NULL AUTO_INCREMENT ,
   `usuario` INT NOT NULL ,
   `nombre_usuario` VARCHAR(45) NOT NULL ,
-  `contraseña` VARCHAR(100) NOT NULL ,
+  `contrasena` VARCHAR(100) NOT NULL ,
   `tipo_usuario` INT NOT NULL ,
   PRIMARY KEY (`id_usuario`) ,
   INDEX `fk_usuario_tutor_idx` (`usuario` ASC) ,
