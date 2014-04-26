@@ -171,7 +171,7 @@
                     <ul>
                         <li><a href="#" onclick="render('../alumno/admin.php');">Alumnos</a>
                         </li>
-                        <li><a href="#">Tutores</a></li>
+                        <li><a href="#" onclick="render('../tutor/admin.php');">Tutores</a></li>
                     </ul>
                 </li>
                 <li><a href="#">Contacto</a></li>
