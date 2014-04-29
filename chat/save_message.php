@@ -1,6 +1,6 @@
 <?php
 
-if(isset($_POST['TxtMessage']) && $_POST['TxtMessage']!='')
+if(isset($_POST['TxtMessage']) && $_POST['TxtMessage']!='' && !empty($_POST['TxtMessage']))
 {
 	include("lib.php");
 
@@ -9,8 +9,10 @@ if(isset($_POST['TxtMessage']) && $_POST['TxtMessage']!='')
 	$message = htmlspecialchars(mysqli_real_escape_string($link,$_POST['TxtMessage']));
 
 	$date = date_create()->format('Y-m-d H:i:s');
+	
+	$group = 3;
 
-     $sql_insert = "INSERT INTO mensaje(usuario,mensaje,fecha_hora)values('1','$message','$date')";
+     $sql_insert = "INSERT INTO chat(mensaje,alumno,grupo,fecha)values('$message','2','$group','$date')";
         
 	$all_content = "";
 		
@@ -21,7 +23,7 @@ if(isset($_POST['TxtMessage']) && $_POST['TxtMessage']!='')
 		
     if($result = mysqli_query($link,$sql_insert)) 
 	{
-		$all_content = array("message"=>"<div> Fco: ".$message."<br />".$date_array[1]." ". $current_date ."</div>");
+		//$all_content = array("message"=>"<div> Fco: ".$message."<br />".$date_array[1]." ". $current_date ."</div>");
 
      } else {
         
