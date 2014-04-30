@@ -1,8 +1,8 @@
 <?php
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+    /*
+     * To change this template, choose Tools | Templates
+     * and open the template in the editor.
+     */
 ?>
 <html>
     <head>
@@ -34,6 +34,20 @@
             }
             function render(url) {
                 $.get(url, function(data) {
+                    if ($("#dialog-create").length) {
+                        var isOpen = $("#dialog-create").dialog("isOpen");
+                        if (isOpen) {
+                            $("#dialog-create").dialog("close");
+                        }
+                        $("#dialog-create").dialog("destroy");
+                    }
+                    if ($("#dialog-update").length) {
+                        var isOpen = $("#dialog-update").dialog("isOpen");
+                        if (isOpen) {
+                            $("#dialog-update").dialog("close");
+                        }
+                        $("#dialog-update").dialog("destroy");
+                    }
                     $("#contenido").html(data);
                     if ($("#dialog-create").length && $("#dialog-create-link").length) {
                         $("#dialog-create").dialog({
@@ -86,6 +100,13 @@
                             event.preventDefault();
                             $.get($(this).attr('href'),
                                     function(data) {
+                                        if ($("#dialog-update").length) {
+                                            var isOpen = $("#dialog-update").dialog("isOpen");
+                                            if (isOpen) {
+                                                $("#dialog-update").dialog("close");
+                                            }
+                                            $("#dialog-update").dialog("destroy");
+                                        }
                                         $("#update-contenedor").html(data);
                                         $("#dialog-update").dialog({
                                             autoOpen: true,
@@ -177,6 +198,7 @@
                 <li><a href="#">Contacto</a></li>
                 <li><a href="#">Acerca de</a></li>
                 <li><a href="#">Logout</a></li>
+                <li><a href="../../chat/index.php">Chat</a></li>
             </ul>
         </div>
         <div id="contenido">

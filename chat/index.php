@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>JQUERY UI</title>
+        <title>Pizarra Virtual</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		
 		 <link href="css/ui-lightness/jquery-ui-1.10.4.custom.css" rel="stylesheet">
