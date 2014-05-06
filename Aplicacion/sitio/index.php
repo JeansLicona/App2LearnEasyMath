@@ -195,6 +195,9 @@
                         <li><a href="#" onclick="render('../tutor/admin.php');">Tutores</a></li>
                     </ul>
                 </li>
+                <li><a href="#" onclick="render('../plan/admin.php');">Plan</a></li>
+                <li><a href="#" onclick="render('../tarea/admin.php');">Tarea</a></li>
+                <li><a href="#" onclick="render('../grupo/admin.php');">Grupo</a></li>
                 <li><a href="#">Contacto</a></li>
                 <li><a href="#">Acerca de</a></li>
                 <li><a href="#">Logout</a></li>

@@ -17,7 +17,7 @@ if (isset($_GET['id'])) {
                 <input type="text" id="apellidos" size="41" name="apellidos" 
                        value="<?php echo $tutor['nombres'];?>" placeholder="Apellidos" /><br/>
                 Secci&oacute;n <br />
-                <input type="text" id="matricula" size="41" name="seccion" 
+                <input type="text" id="seccion" size="41" name="seccion" 
                        value="<?php echo $tutor['seccion'];?>" placeholder="Sección" /><br/>
                 Fecha de nacimiento <br />
                 <input type="text" id='fecha_nacimiento' size="41" name='fecha_nacimiento'

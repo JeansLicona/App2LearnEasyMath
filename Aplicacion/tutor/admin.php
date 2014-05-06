@@ -12,7 +12,7 @@
             <input type="text" id="apellidos" size="41" name="apellidos" placeholder="Apellidos" /><br/>
             Secci&oacute;n <br />
             <input type="text" id="seccion" size="41" name="seccion" placeholder="Sección" /><br/>
-            Fecha de nacimiento: <br /> 
+            Fecha de nacimiento <br /> 
             <input type="text" id='fecha_nacimiento' name='fecha_nacimiento' placeholder="Fecha de nacimiento" class="fecha"> <br />
             Correo <br /> 
             <input type="text" id="correo" size="41" name="correo" placeholder="Correo" /><br/>
