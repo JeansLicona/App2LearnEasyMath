@@ -784,22 +784,32 @@ body .ui-tooltip {
 ----------------------------------*/
 .ui-widget {
 	font-family: Segoe UI,Arial,sans-serif;
-	font-size: 1.1em;
+	font-size: 15px;
 }
 .ui-widget .ui-widget {
 	font-size: 1em;
+}
+
+.ui-widget button{
+    border-radius: 6px;
+    font-size: 18px;
+    line-height: 1.33;
+    padding: 10px 16px;
+	background-color: #428BCA;
 }
 .ui-widget input,
 .ui-widget select,
 .ui-widget textarea,
 .ui-widget button {
 	font-family: Segoe UI,Arial,sans-serif;
-	font-size: 1em;
+	font-size: 14px;
+	color: #999999;
+    opacity: 1;
 }
 .ui-widget-content {
 	border: 1px solid #666666;
-	background: #000000 url(images/ui-bg_inset-soft_25_000000_1x100.png) 50% bottom repeat-x;
-	color: #ffffff;
+	background: #33B873;
+	color: #333333;
 }
 .ui-widget-content a {
 	color: #ffffff;

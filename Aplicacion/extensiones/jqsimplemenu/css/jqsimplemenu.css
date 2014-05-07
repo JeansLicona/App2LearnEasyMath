@@ -5,14 +5,20 @@
     list-style-type: none;
     position: relative;
     line-height: 2.5em;
+	width: 100%;
+	list-style: none outside none;
+    margin-bottom: 0;
+    padding-left: 0;	
+	
 }
+
 .menu a
 {
     text-decoration: none;
 }
 .menu > li
 {
-    margin-left: 15px;
+    margin-left: 10%;
 }
 .menu > li:first
 {
@@ -24,14 +30,14 @@
     margin: 0;
     width: 100%;
     text-decoration: none;
-    color: #838383;
+    color: #777777;
     font-weight: bold;
 }
 div.box
 {
     position: absolute;
     z-index: -1;
-    background-color: #75CDD2;
+    background-color: #5CB85C;
     left: 0;
     top: 0;
     border-radius: 4px 4px 0px 0px;
@@ -58,9 +64,9 @@ li.right-menu > a
 .menu a.selected
 {
     background-color: #75CDD2;
-    border-radius: 0px 4px 4px 4px;
-    -moz-border-radius: 0px 4px 4px 4px;
-    -webkit-border-radius: 0px 4px 4px 4px;
+    border-radius: 0px 16px 16px 16px;
+    -moz-border-radius: 0px 16px 16px 16px;
+    -webkit-border-radius: 0px 16px 16px 16px;
 }
 .menu li
 {
@@ -74,7 +80,8 @@ li.right-menu > a
     display: none;
     width: 200px;
     top: 2.5em; /*padding-right: 10px;*/
-    background-color: #75CDD2; /*-moz-opacity: .50;     filter: alpha(opacity=50);     opacity: .50;*/
+
+    background-color: #5CB85C; /*-moz-opacity: .50;     filter: alpha(opacity=50);     opacity: .50;*/
     border-radius: 0px 4px 4px 4px;
     -moz-border-radius: 0px 4px 4px 4px;
     -webkit-border-radius: 0px 4px 4px 4px;
@@ -85,8 +92,9 @@ li.right-menu > a
     width: 180px;
     height: auto;
     float: left;
-    color: #FFFEFD;
+    color: white;
     padding: 0 10px;
+	font-weight: bold; 
 }
 .menu li ul li
 {
@@ -104,13 +112,13 @@ li.right-menu > a
 }
 .menu-item-selected > a
 {
-    background-color: #FFFEFD;
+    background-color: #398439; 
     -moz-opacity: .50;
     filter: alpha(opacity=50);
     opacity: .50;
 }
 .menu-item-selected > a:hover
 {
-    color: #257E84 !important;
+    color: white !important;
 }
 
