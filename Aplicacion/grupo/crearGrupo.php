@@ -1,14 +1,14 @@
 <?php
 
     include '../util/ComandosBD.php';
-    if (isset($_POST['nombre']) && isset($_POST['fecha_fin']) 
-            && isset($_POST['grupo']) && isset($_POST['tutor']) && isset($_POST['plan'])) {
+    
+    if (isset($_POST['nombre']) && isset($_POST['fecha_fin']) && isset($_POST['tutor']) && isset($_POST['plan'])) {
         $nombre=$_POST['nombre'];
         $fechaDesintegracion=$_POST['fecha_fin'];
-        $grupo=$_POST['grupo'];
         $tutor=$_POST['tutor'];
         $plan=$_POST['plan'];
         $fecha= new DateTime("now");
+        
         
         $comandoUtil = new ComandosBD();
         $comandoUtil->beginTransaction();
@@ -17,7 +17,7 @@
             'nombre' => $nombre,
             'fecha_creacion' => $fecha->format('Y-m-d'),
             'fecha_desintegracion'=>$fechaDesintegracion,
-            'plan_' => $plan,
+            'plan' => $plan,
             'tutor'=>$tutor,
         ));
         if ($isSave) {

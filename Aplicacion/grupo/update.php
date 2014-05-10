@@ -2,10 +2,9 @@
 
      include '../util/ComandosBD.php';
     if (isset($_POST['nombre']) && isset($_POST['fecha_fin']) 
-            && isset($_POST['grupo']) && isset($_POST['tutor']) && isset($_POST['plan'])) {
+           && isset($_POST['tutor']) && isset($_POST['plan'])) {
         $nombre=$_POST['nombre'];
         $fechaDesintegracion=$_POST['fecha_fin'];
-        $grupo=$_POST['grupo'];
         $tutor=$_POST['tutor'];
         $plan=$_POST['plan'];
         
@@ -15,9 +14,9 @@
         $isSave&=$comandoUtil->update("grupo", array(
             'nombre' => $nombre,
             'fecha_desintegracion'=>$fechaDesintegracion,
-            'plan_' => $plan,
+            'plan' => $plan,
             'tutor'=>$tutor,
-        ));
+        ), 'id_grupo=:id', array(':id' => $_GET['id']));
         if ($isSave) {
             $comandoUtil->commit();
             $result = array('status' => 'success');

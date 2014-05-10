@@ -14,8 +14,8 @@ if (isset($_GET['id'])) {
                 <input type="text" id="nombre" size="41" name="nombre" 
                        value="<?php echo $tarea['nombre'];?>" placeholder="Nombre" /><br/>
                 Descripci&oacute;n <br />
-                <input type="text" id="descripcion" size="41" name="descripcion" 
-                       value="<?php echo $tarea['descripcion'];?>" placeholder="Descripción" /><br/>
+                <textarea type="text" id="descripcion" name="descripcion"
+                      cols="40" rows="2" placeholder="Descripción..." ><?php echo $tarea['descripcion'];?></textarea><br/>
                 <input type="submit" value="Guardar">
             </p>
         </form>

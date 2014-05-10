@@ -1,17 +1,29 @@
 <?php
     include_once '../util/ComandosBD.php';
-    
+
     function buscarTutor() {
-        $responsableSelec="";
+        $responsableSelec = "";
         $query = new ComandosBD();
-        $tutores= $query->query(array('from' => 'tutor'));
+        $tutores = $query->query(array('from' => 'tutor'));
         $responsableSelec.='<select id="tutor" name="tutor" placeholder="Tutor">';
-        foreach ($tutores as $tutor){
-            $nombre=$tutor['nombres']." ".$tutor['apellidos'];
-            $responsableSelec.='<option value="'.$tutor['id_tutor'].'">'.$nombre.'</option>';
+        foreach ($tutores as $tutor) {
+            $nombre = $tutor['nombres'] . " " . $tutor['apellidos'];
+            $responsableSelec.='<option value="' . $tutor['id_tutor'] . '">' . $nombre . '</option>';
         }
         $responsableSelec.='</select> <br />';
         return $responsableSelec;
+    }
+
+    function buscarPlanes() {
+        $planSelec = "";
+        $query = new ComandosBD();
+        $planesEle = $query->query(array('from' => 'plan'));
+        $planSelec.='<select id="plan" name="plan" placeholder="Plan">';
+        foreach ($planesEle as $plan) {
+            $planSelec.='<option value="' . $plan['id_plan'] . '">' . $plan['nombre'] . '</option>';
+        }
+        $planSelec.='</select> <br />';
+        return $planSelec;
     }
 ?>
 
@@ -29,10 +41,8 @@
             Tutor <br /> 
             <?php echo buscarTutor();
             ?>
-            Integrantes <br /> 
-            <input type="text" id='grupo' name='grupo' placeholder="Integrantes"> <br />
-            Plan <br /> 
-            <input type="text" id='plan' name='plan' placeholder="Plan"> <br />
+            Plan Procedente <br /> 
+            <?php echo buscarPlanes(); ?>
             <input type="submit" value="Guardar">
         </p>
     </form>
@@ -46,6 +56,7 @@
         echo $data;
         echo '</td>';
     }
+
     $db = new ComandosBD();
     $grupos = $db->query(array('from' => 'grupo'));
 
@@ -74,9 +85,14 @@
         addColumnTable($responsable['apellidos'] . " " . $responsable['nombres']);
         addColumnTable($plan['nombre']);
         addColumnTable('<a href="../grupo/formUpdate.php?id=' . $grupo['id_grupo'] . '" class="update-option">Editar grupo</a>
-        <a href="../grupo/delete.php?id=' . $grupo['id_grupo'] . '" class="delete-option">Eliminar grupo</a>');
+        <a href="../grupo/delete.php?id=' . $grupo['id_grupo'] . '" class="delete-option">Eliminar grupo</a>
+             <a href="../grupo/formClase.php?id=' . $grupo['id_grupo'] . '">Añadir Integrantes</a>'
+        );
         echo '</tr>';
     }
     echo '
     </tbody>
     </table>';
+
+
+    

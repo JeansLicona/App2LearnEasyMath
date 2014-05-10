@@ -4,7 +4,7 @@
         $planSelec="";
         $query = new ComandosBD();
         $planesEle= $query->query(array('from' => 'plan'));
-        $planSelec.='<select id="tarea" name="tarea" placeholder="Tarea">
+        $planSelec.='<select id="plan" name="plan" placeholder="Plan">
             <option value="Ninguno">Ninguno</option>';
         foreach ($planesEle as $plan) {
             $planSelec.='<option value="'.$plan['nombre'].'">'.$plan['nombre'].'</option>';
@@ -68,8 +68,9 @@
    </tr>
    </thead>
    <tbody>';
+    $db->beginTransaction();
     foreach ($planes as $plan) {
-        $tareas = $db->query(array('from' => 'plan', 'where' => 'id_tarea=:id',
+        $tareas = $db->query(array('from' => 'tarea', 'where' => 'id_tarea=:id',
             'params' => array(':id' => $plan['tarea'])));
         $tarea = $tareas[0];
         echo '<tr>';

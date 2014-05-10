@@ -1,15 +1,15 @@
 ﻿<?php
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+    /*
+     * To change this template, choose Tools | Templates
+     * and open the template in the editor.
+     */
 ?>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
         <link href="../jquery/css/ui-darkness/jquery-ui-1.10.4.custom.css" rel="stylesheet">
-		<link href="../estilos/style.css" rel="stylesheet">
+        <link href="../estilos/style.css" rel="stylesheet">
         <script src="../jquery/js/jquery-1.10.2.js"></script>
         <script src="../jquery/js/jquery-ui-1.10.4.custom.js"></script>
         <script type="text/javascript" src="../extensiones/DataTables-1.8.0/media/js/jquery.dataTables.js"></script>
@@ -35,6 +35,20 @@
             }
             function render(url) {
                 $.get(url, function(data) {
+                    if ($("#dialog-create").length) {
+                        var isOpen = $("#dialog-create").dialog("isOpen");
+                        if (isOpen) {
+                            $("#dialog-create").dialog("close");
+                        }
+                        $("#dialog-create").dialog("destroy");
+                    }
+                    if ($("#dialog-update").length) {
+                        var isOpen = $("#dialog-update").dialog("isOpen");
+                        if (isOpen) {
+                            $("#dialog-update").dialog("close");
+                        }
+                        $("#dialog-update").dialog("destroy");
+                    }
                     $("#contenido").html(data);
                     if ($("#dialog-create").length && $("#dialog-create-link").length) {
                         $("#dialog-create").dialog({
@@ -87,6 +101,13 @@
                             event.preventDefault();
                             $.get($(this).attr('href'),
                                     function(data) {
+                                        if ($("#dialog-update").length) {
+                                            var isOpen = $("#dialog-update").dialog("isOpen");
+                                            if (isOpen) {
+                                                $("#dialog-update").dialog("close");
+                                            }
+                                            $("#dialog-update").dialog("destroy");
+                                        }
                                         $("#update-contenedor").html(data);
                                         $("#dialog-update").dialog({
                                             autoOpen: true,
@@ -119,7 +140,7 @@
             }
         </script>
         <style type="text/css">
-           
+
         </style>
     </head>
     <body>
@@ -133,7 +154,7 @@
                         <li><a href="#" onclick="render('../tutor/admin.php');">Tutores</a></li>
                     </ul>
                 </li>
-				<li><a href="#" onclick="render('../plan/admin.php');">Plan</a></li>
+                <li><a href="#" onclick="render('../plan/admin.php');">Plan</a></li>
                 <li><a href="#" onclick="render('../tarea/admin.php');">Tarea</a></li>
                 <li><a href="#" onclick="render('../grupo/admin.php');">Grupo</a></li>	
                 <li><a href="#">Contacto</a></li>  
@@ -141,8 +162,8 @@
                 <li><a href="#">Logout</a></li>
             </ul>
         </div>
-        
-		<div id="contenido">
+
+        <div id="contenido">
 
         </div>
     </body>

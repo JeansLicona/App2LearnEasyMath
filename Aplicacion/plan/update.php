@@ -15,7 +15,7 @@
             'carpeta_material'=>$material,
             'plan_procedente' => $plan,
             'tarea'=>$tarea,
-        ));
+        ), 'id_plan=:id', array(':id' => $_GET['id']));
         if ($isSave) {
             $comandoUtil->commit();
             $result = array('status' => 'success');

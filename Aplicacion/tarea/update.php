@@ -11,7 +11,7 @@
         $isSave&=$comandoUtil->update("tarea", array(
             'nombre' => $nombre,
             'descripcion' => $descripcion,
-        ));
+        ), 'id_tarea=:id_tarea', array(':id_tarea' => $_GET['id']));
         if ($isSave) {
             $comandoUtil->commit();
             $result = array('status' => 'success');
