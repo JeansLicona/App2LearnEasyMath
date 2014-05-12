@@ -49,6 +49,9 @@
 </div>
 <div id="update-contenedor">
 </div>
+<div id="student-contenedor">
+    
+</div>
 <?php
 
     function addColumnTable($data) {
@@ -86,13 +89,14 @@
         addColumnTable($plan['nombre']);
         addColumnTable('<a href="../grupo/formUpdate.php?id=' . $grupo['id_grupo'] . '" class="update-option">Editar grupo</a>
         <a href="../grupo/delete.php?id=' . $grupo['id_grupo'] . '" class="delete-option">Eliminar grupo</a>
-             <a href="../grupo/formClase.php?id=' . $grupo['id_grupo'] . '">Añadir Integrantes</a>'
+             <a href="../grupo/formClase.php?id=' . $grupo['id_grupo'] . '" class="add-student">Añadir Integrantes</a>'
         );
         echo '</tr>';
     }
     echo '
     </tbody>
     </table>';
+
 
 
     
