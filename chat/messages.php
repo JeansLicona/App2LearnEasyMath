@@ -3,18 +3,11 @@
 include("lib.php");
 
 $link = connectDB();
-/*
-$sql_messages = "SELECT mensaje.usuario_id,usuario.nombre, mensaje.mensaje,mensaje.fecha FROM mensaje join usuario on mensaje.usuario_id=usuario.id";
-*/
-
-//$sql_messages = "SELECT id_chat,usuario,mensaje,fecha_hora FROM mensaje LIMIT 20";
 
 $num_messages = 20;
 
-//$sql_max_id = "SELECT MAX(id_chat) AS max_id FROM mensaje";
-
 $sql_messages = "SELECT * FROM ";
-$sql_messages .= "(SELECT * FROM chat ORDER BY id_chat DESC LIMIT $num_messages) ";
+$sql_messages .= "(SELECT * FROM chat_general ORDER BY id_chat DESC LIMIT $num_messages) ";
 $sql_messages .= "AS messages ORDER BY id_chat ASC ";
 
 $result = mysqli_query($link,$sql_messages);

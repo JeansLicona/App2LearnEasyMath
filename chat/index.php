@@ -1,3 +1,13 @@
+<?php
+session_start();
+
+if(!isset($_SESSION['logueado']) && $_SESSION['logueado']!='si')
+{
+	header('Location: login.php');
+	exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -9,38 +19,53 @@
 		<script src="js/jquery-1.10.2.js"></script>
 		<script src="js/jquery-ui-1.10.4.custom.js"></script>
 	
-       <script type="text/javascript">
+	   <script type="text/javascript">
+		
+		$(document).ready(function(){
+
+			setInterval(function(){
+	
+				var type_chat = $("#type_chat").val();
+		
+				if(type_chat=='general'){
+			
+					get_new_messages_general();
+			
+				}else if(type_chat=='group'){
+		
+					get_messages_group();
+				}
+			},3000);
+	
+		});
+	   </script>
+	   
+	   <script type="text/javascript">
             $(function(){
 			
-			$('#TxtMessage').focus();
-			
-				get_messages();
-				//get_new_messages();
-			
+				$("#title_chat").html("Chat General");
+				$('#TxtMessage').focus();
+				$("#type_chat").val('general');
+				 
+				$("#see_general_chat").click(function(){
+					
+					$("#type_chat").val('general');
+						
+					$("#container_messages").empty();
+						
+					$("#id_last_message").val(0);
+						
+					$("#title_chat").html("Chat general");
+				});			
             });
 
-//$sQuery = "SELECT MAX(id_mensaje) AS maximo_id FROM mensaje";
-
-$(document).ready(function(){
-
-	setInterval(function(){
-	
-	get_new_messages();
-	
-	},2000);
-	
-});
-
-
-
-
-function get_new_messages(){
+function get_new_messages_general(){
 	
 	var value_rand = (-0.5)+(Math.random()*(100.99));
 	var id_last_message  = $("#id_last_message").val();
-	
+
 	$.ajax({
-		url:'new_messages.php', 
+		url:'new_messages_general.php', 
 		type: 'GET',
 		dataType: 'json',
 		data: {
@@ -54,44 +79,76 @@ function get_new_messages(){
 				$("#id_last_message").val(answer.id_last_message);
 			}
 		},
-		
+		/*
 		error:function(){
 			 alert("Lo sentimos el servidor tiene problemas. Intente mas tarde");
 		}
+		*/
 	});
 	
 }
-
         </script>
 
-
-
-	 
 	<script type="text/javascript">
 	
-	function get_messages()
-	{
+	$(document).ready(function(){
+
+	var value_rand = (-0.5)+(Math.random()*(100.99));
+	
 		$.ajax({
-			url:'messages.php', 
-			type: 'GET',
+			url:'groups.php',
+			type:'GET',
 			dataType: 'json',
+			data: {'rand': value_rand },
 			success: function(answer){
-			
-			//VALIDAR SI EL ANSWER NO ES VACIO, ENTONCES...
-			//$("#container_messages").append(answer.content);
-			$("#container_messages").html(answer.content);
-			
-			$("#last_id_message").val(answer.id_last_message);
-				
-				
-				},
-					error:function(){
-						alert("ERROR");
-					}
-				});
+		
+			$("#groups").empty();
+			$("#groups").html(answer.content);
+			}
+		});
+	});
+	
+	</script>
+	
+	<script type="text/javascript">
+	
+	function start_messages_group(item){
+		
+		var name_group = item.text;
+		
+		$("#id_group").val(item.value);
+		$("#type_chat").val('group');
+		$("#id_last_message").val(0);
+		
+		$("#title_chat").html("Grupo "+name_group);
+		
+		$("#container_messages").empty();
+		
 	}
 
-	</script>
+	function get_messages_group(){
+	
+		var value_rand = (-0.5)+(Math.random()*(100.99));
+		
+		var id_group = $("#id_group").val();
+		var id_last_message = $("#id_last_message").val();
+		
+		$.ajax({
+			url:'new_messages_group.php',
+			type:'GET',
+			dataType:'json',
+			data:{'rand':value_rand,'id_group':id_group,'id_last_message':id_last_message},
+			success: function(answer){
+
+				if(answer.content!=''){
+					$("#container_messages").append(answer.content);
+					$("#id_last_message").val(answer.id_last_message);
+				}
+			}
+		});
+	}
+	
+</script>
 	
 	<style>
 	body{
@@ -106,6 +163,7 @@ function get_new_messages(){
 		width:200px;
 		height:300px;
 		background-color:yellow;
+		overflow-y: scroll;
 	}
 	
 	</style>
@@ -113,45 +171,27 @@ function get_new_messages(){
     </head>
     <body>
 	
-	<?php
-	/*
-	SELECT * FROM ((SELECT id_mensaje,m.usuario,mensaje,fecha_hora FROM mensaje m ORDER BY id_mensaje DESC LIMIT 20) AS messages ORDER BY id_mensaje ASC ) JOIN usuario ON m.usuario=usuario.id 
-	*/
-	/*
-	include("lib.php");
-
-$link = connectDB();
-
-$sql = "SELECT * FROM ";
-$sql .= "(SELECT id_mensaje,mensaje.ususario,usuario.usuario,mensaje,fecha_hora FROM mensaje ORDER BY id_mensaje DESC LIMIT 20) ";
-$sql .= "AS messages ORDER BY id_mensaje ASC JOIN usuario ON mensaje.usuario=usuario.id ";
-
-echo $sql;
-$result = mysqli_query($link,$sql);
-
-$num_rows = mysqli_num_rows($result);
-
-
-
-if($num_rows>0)
-{
-
-	while ($message = mysqli_fetch_array($result))
-	{
-
-echo $message['id_mensaje'] . "ss";
-}
-}
-*/
-	?>
+	<div id="cerrar_sesion">
+		<a href='logout.php'>Salir<a>
+	</div>
 	
-	<input type="hidden" id="id_last_message" name="id_last_message" value="0">
+	<input type="hidden" id="type_chat" name="type_chat" value="general" />
+	<input type="hidden" id="id_group" name="id_group" value="-1" />
+	
+	<input type="hidden" id="id_last_message" name="id_last_message" value="0" />
 
+		<div id="title_chat">
+		</div>
+		
 		<div id="container_messages">
-		<!--
-			<div id="container_messages">
-			</div>
-		-->
+		</div>
+		
+		<div id="container_groups">
+		</div>
+		
+		<input type="button" id="see_general_chat" value="Chat general" />
+		
+		<div id="groups">
 		</div>
 		
 <div id="div_form_message">
@@ -165,7 +205,7 @@ echo $message['id_mensaje'] . "ss";
 </form>
 </div>
 
-		<script type="text/javascript">
+<script type="text/javascript">
 
 // Attach a submit handler to the form
 $( "#form_message" ).submit(function( event ) {
@@ -178,12 +218,13 @@ $( "#form_message" ).submit(function( event ) {
 	message = $form.find( "textarea[name='TxtMessage']" ).val(),
     url = $form.attr( "action" );
 	
-	//FALTA VALIDAR QUE NO ACEPTE UNICAMENTE ENTERS
+	var type_chat = $("#type_chat").val();
+	var id_group = $("#id_group").val();
 	
 	if($.trim(message!='')){
 	
 		  $.post( url,
-				{ TxtMessage: message },
+				{ TxtMessage: message, 'TypeChat': type_chat, 'id_group':id_group },
 				function(answer) {
 					
 					$("#TxtMessage").val('').focus();
