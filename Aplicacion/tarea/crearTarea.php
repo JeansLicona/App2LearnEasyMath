@@ -1,11 +1,28 @@
 <?php
 
-   include '../util/ComandosBD.php';
-    if (isset($_POST['responsable']) && isset($_POST['nombre']) &&
-            isset($_POST['descripcion'])) {
-        $nombre=$_POST['nombre'];
-        $descripcion=$_POST['descripcion'];
-        $responsable=$_POST['responsable'];
+function validate($nombre, $descripcion, $responsable) {
+    $mensaje = array();
+    if (isEmpty($nombre)) {
+        $mensaje[] = "Nombre no puede ser vacio.<br />";
+    }
+    if (isEmpty($descripcion)) {
+        $mensaje[] = "Descripción no puede ser vacio.<br />";
+    }
+    if (isEmpty($responsable)) {
+        $mensaje[] = "Responsable no puede ser vacio.<br />";
+    }
+    return $mensaje;
+}
+
+include_once '../util/Validations.php';
+include '../util/ComandosBD.php';
+if (isset($_POST['responsable']) && isset($_POST['nombre']) &&
+        isset($_POST['descripcion'])) {
+    $nombre = $_POST['nombre'];
+    $descripcion = $_POST['descripcion'];
+    $responsable = $_POST['responsable'];
+    $message = validate($nombre, $descripcion, $responsable);
+    if (empty($message)) {
         $comandoUtil = new ComandosBD();
         $comandoUtil->beginTransaction();
         $isSave = true;
@@ -20,8 +37,12 @@
         } else {
             $comandoUtil->rollback();
             $result = array('status' => 'error',
-                'content' => "Ocurrio un error al guardar los datos");
+                'message' => "Ocurrio un error al guardar los datos");
         }
-        echo json_encode($result);
+    }else{
+            $result = array('status' => 'error',
+                'message' => $message);
     }
+    echo json_encode($result);
+}
 ?>

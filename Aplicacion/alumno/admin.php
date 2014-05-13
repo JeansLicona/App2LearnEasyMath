@@ -17,6 +17,8 @@
             <input type="text" id="institucion" size="41" name="institucion" placeholder="Institucion" /><br/>
             Contraseña <br />
             <input type="password" id="contraseña" size="41" name="contrasena" placeholder="Contraseña" /><br/>
+            Confirmar Contraseña <br />
+            <input type="password" id="confirmPassword" size="41" name="confirmPassword" placeholder="Confirmar contraseña" /><br/>
             Fecha de nacimiento <br /> 
             <input type="text" id='fecha_nacimiento' name='fecha_nacimiento' placeholder="Fecha de nacimiento" class="fecha"> <br />
             Correo <br /> 

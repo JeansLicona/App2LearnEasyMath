@@ -1,15 +1,16 @@
 ﻿<?php
-    /*
-     * To change this template, choose Tools | Templates
-     * and open the template in the editor.
-     */
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
 ?>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
         <link href="../jquery/css/ui-darkness/jquery-ui-1.10.4.custom.css" rel="stylesheet">
-        <link href="../estilos/style.css" rel="stylesheet">
+        <link href="../estilos/style.css" rel="stylesheet">  
+        <link href="../estilos/table.css" rel="stylesheet"> 
         <script src="../jquery/js/jquery-1.10.2.js"></script>
         <script src="../jquery/js/jquery-ui-1.10.4.custom.js"></script>
         <script type="text/javascript" src="../extensiones/DataTables-1.8.0/media/js/jquery.dataTables.js"></script>
@@ -75,7 +76,8 @@
                                             unbindEvents();
                                             render(url);
                                         } else {
-                                            $("div#error").html(data.content);
+                                            $("div#error").html("Se presentaron los siguientes errores:<br />"
+                                                    + data.message);
                                         }
                                     }, "json");
                         });
@@ -89,8 +91,6 @@
                                             if (data.status == "success") {
                                                 unbindEvents();
                                                 render(url);
-                                            } else {
-                                                alert(data.content);
                                             }
                                         }, "json");
                             }
@@ -123,7 +123,10 @@
                                                             unbindEvents();
                                                             render(url);
                                                         } else {
-                                                            $("div#error-update").html(data.content);
+                                                            if (data.status == "error") {
+                                                                $("div#error-update").html("Se presentaron los siguientes errores:<br />"
+                                                                        + data.message);
+                                                            }
                                                         }
                                                     }, "json");
                                         });

@@ -22,6 +22,7 @@ function isAlfaNumeric($value) {
     }
     return false;
 }
+
 function isNumeric($value) {
     if (preg_match('/^[1-9]*$/', $value)) {
         return true;
@@ -35,4 +36,14 @@ function isDateFormat($value) {
     }
     return false;
 }
+
+function existDate($date, $format) {
+    $date = DateTime::createFromFormat($format, $date);
+    if (!$date) {
+        return false;
+    } else {
+        return true;
+    }
+}
+
 ?>
