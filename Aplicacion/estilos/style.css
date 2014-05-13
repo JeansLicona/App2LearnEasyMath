@@ -1,6 +1,6 @@
  div#contenido { 
-                clear:both; 
-            }
+    clear:both; 
+ }
             
 body{
     font: 83.5% "Trebuchet MS", sans-serif;
@@ -9,8 +9,201 @@ body{
 	background-color: #e7ebf2;
 }
 			
+#login{
+	padding-top: 40px;
+	padding-bottom: 40px;
+	background-color: #eee;
+  }
+  
+/*LOGIN CSS*/
+
+#div_form_login{
+	margin-right:auto;
+	margin-left:auto;
+	padding-left:15px;
+	padding-right:15px;
+    color: #333333;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    line-height: 1.42857;	
+}
+
+@media (min-width:768px){
+	#div_form_login{
+		width:750px
+	}
+}
+
+@media (min-width:992px){
+	#div_form_login{
+		width:970px
+	}
+}
+@media (min-width:1200px){
+	#div_form_login{
+		width:1170px
+	}
+}
 
 
+#form_login{
+
+	max-width: 330px;
+	padding: 15px;
+	margin: 0 auto;
+
+}
+
+#form_login input[type="text"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+#form_login input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.form-control{
+
+	background-color: #FFFFFF;
+    background-image: none;
+    border: 1px solid #CCCCCC;
+    border-radius: 4px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+    color: #555555;
+    display: block;
+    font-size: 14px;
+    height: 34px;
+    line-height: 1.42857;
+    padding: 6px 12px;
+    transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+    width: 100%;
+
+}
+
+.form-control::-moz-placeholder{
+	color: #999999;
+    opacity: 1;
+}
+
+
+#form_login .form-control:focus {
+  z-index: 2;
+}
+
+#form_login .form-control {
+  position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px; 
+}
+
+#form_login .form-signin-heading {
+  margin-bottom: 10px;
+}
+
+.form-signin-heading {
+	font-size: 30px;
+}
+
+.btn-block{
+
+	display: block;
+    padding-left: 0;
+    padding-right: 0;
+    width: 100%;
+
+}
+
+
+.btn-lg{
+	border-radius: 6px;
+    font-size: 18px;
+    line-height: 1.33;
+    padding: 10px 16px;
+}
+
+.btn-primary {
+    background-color: #428BCA;
+    border-color: #357EBD;
+    color: #FFFFFF;
+}
+
+.btn {
+    -moz-user-select: none;
+    background-image: none;
+    border: 1px solid rgba(0, 0, 0, 0);
+    border-radius: 4px;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857;
+    margin-bottom: 0;
+    padding: 6px 12px;
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap;
+	
+	border-radius: 6px;
+    
+    line-height: 1.33;
+}
+
+
+button, html input[type="button"], input[type="reset"], input[type="submit"] {
+    cursor: pointer;
+}
+
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open .dropdown-toggle.btn-primary{
+	background-color: #3276B1;
+    border-color: #285E8E;
+    color: #FFFFFF;
+}
+
+/*END LOGIN CSS*/
+
+
+/*  CHAT CSS  */
+
+#container_dialog{
+	display:none;
+	}
+
+#container_messages{
+		width:30%;
+		height:350px;
+		background-color: white;
+		border-color: #4C66A4;
+		border-style: solid;
+		border-width: medium;
+}
+
+#TxtMessage{
+
+font-family: "comic sans ms";
+font-size: 100%;
+color:#003399;
+
+}
+
+#btn-chat{
+	width: 5%;
+}
+
+#ckeditor-panel{
+	width: 750px;
+	float: right;
+	margin-top: -45%;
+}
+
+/*  END CHAT CSS  */
 			
 
             #dialog-link {

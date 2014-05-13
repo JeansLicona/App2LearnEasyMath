@@ -32,6 +32,7 @@
                 $("#dialog-update-form").unbind('submit');
                 $(".update-option").unbind('click');
                 $(".delete-option").unbind('click');
+                $(".add-student").unbind('click');
                 $("#dialog-create-link").unbind('click');
             }
             function render(url) {
@@ -96,6 +97,42 @@
                             }
                         });
                     }
+
+                    if ($(".add-student").length) {
+                        $(".add-student").click(function(event) {
+                            event.preventDefault();
+                            $.get($(this).attr('href'), function(data) {
+                                if ($("#dialog-student").length) {
+                                    var isOpen = $("#dialog-student").dialog("isOpen");
+                                    if (isOpen) {
+                                        $("#dialog-student").dialog("close");
+                                    }
+                                    $("#dialog-student").dialog("destroy");
+                                }
+                                $("#student-contenedor").html(data);
+                                $("#dialog-student").dialog({
+                                    autoOpen: true,
+                                    width: 340,
+                                });
+                                $("#dialog-student-form").submit(function(event) {
+                                    event.preventDefault();
+                                    $.post($("#dialog-student-form").attr('action'),
+                                            $("#dialog-student-form").serialize(),
+                                            function(data) {
+                                                if (data.status == "success") {
+                                                    $("#dialog-student").dialog("close");
+                                                    unbindEvents();
+                                                    render(url);
+                                                } else {
+                                                    $("div#error-student").html(data.content);
+                                                }
+                                            }, "json");
+                                });
+                            }, "html"
+                                    );
+                        });
+                    }
+
                     if ($(".update-option").length) {
                         $(".update-option").click(function(event) {
                             event.preventDefault();
