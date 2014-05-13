@@ -4,10 +4,10 @@
         <title>LOGIN</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		
-		<link href="css/ui-lightness/jquery-ui-1.10.4.custom.css" rel="stylesheet">
+        <link href="../extensiones/css/ui-lightness/jquery-ui-1.10.4.custom.css" rel="stylesheet">
 		<link href="../estilos/style.css" rel="stylesheet">
-		<script src="js/jquery-1.10.2.js"></script>
-		<script src="js/jquery-ui-1.10.4.custom.js"></script>
+                <script src="../extensiones/js/jquery-1.10.2.js"></script>
+                <script src="../extensiones/js/jquery-ui-1.10.4.custom.js"></script>
 	
     </head>
     <body id = "login">
@@ -19,7 +19,7 @@
 <div id="result_login">
 </div>
 
-<form action="validate_login.php" id="form_login">
+    <form action="../validacion/validate_login.php" id="form_login">
 		<h2 class="form-signin-heading"> Favor de Registrarse </h2>
 	<p>
 		<input type="text" name="TxtUserName" id="TxtUserName" class="form-control" placeholder="Usuario" required autofocus />
@@ -51,7 +51,8 @@ $( "#form_login" ).submit(function( event ) {
 					$("#txt_message_login").remove();
 					
 					if(answer.status_login!='logueado'){
-						
+					
+						$("#result_login").empty();
 						$("#result_login").append(answer.status_login);
 					
 					}else if(answer.status_login=='logueado'){
