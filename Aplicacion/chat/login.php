@@ -62,7 +62,8 @@ $( "#form_login" ).submit(function( event ) {
 					$("#txt_message_login").remove();
 					
 					if(answer.status_login!='logueado'){
-						
+					
+						$("#result_login").empty();
 						$("#result_login").append(answer.status_login);
 					
 					}else if(answer.status_login=='logueado'){
