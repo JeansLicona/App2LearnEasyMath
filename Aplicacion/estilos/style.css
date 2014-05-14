@@ -183,6 +183,32 @@ button, html input[type="button"], input[type="reset"], input[type="submit"] {
 		border-color: #4C66A4;
 		border-style: solid;
 		border-width: medium;
+		overflow-y: scroll;
+}
+
+#container_message{
+	background-color: #e7ebf2;
+	border-radius:5px;
+	border: 1px solid gray;
+	margin-top: 3px;
+	margin-left: 3px;
+	margin-right: 3px;
+	padding: 5px;
+}
+
+#container_text_message{
+	margin-left:25px;
+	background-color:white;
+	
+	font-size:18px;
+}
+
+#name_user{
+	height:20px;
+	//background-color:white;
+}
+#date_hour{
+	padding-left:300px;
 }
 
 #TxtMessage{
@@ -202,6 +228,7 @@ color:#003399;
 	float: right;
 	margin-top: -45%;
 }
+
 
 /*  END CHAT CSS  */
 			
