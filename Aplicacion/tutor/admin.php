@@ -1,4 +1,10 @@
 
+<?php
+$USUARIO_ADMINISTRADOR = 1;
+session_start();
+if (isset($_SESSION['tipo_usuario'])) {
+    if ($_SESSION['tipo_usuario'] == $USUARIO_ADMINISTRADOR) {
+        ?>
 <h1>Administracion de Tutor</h1>
 <p><a href="#" id="dialog-create-link" class="ui-state-default ui-corner-all">
         <span class="ui-icon ui-icon-newwin"></span>Agregar tutor</a></p>
@@ -63,4 +69,11 @@ foreach ($tutores as $tutor) {
 echo '
     </tbody>
     </table>';
+    } else {
+        ?>
+        <h1>Error 403</h1>
+        <p>No se tiene suficientes permisos</p>     
+        <?php
+    }
+}
 ?>
