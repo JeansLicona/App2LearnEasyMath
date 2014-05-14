@@ -57,7 +57,7 @@ $( "#form_login" ).submit(function( event ) {
 					
 					}else if(answer.status_login=='logueado'){
 		
-						window.location = 'index.php';
+						window.location = '../sitio/index.php';
 					
 					}
 					
