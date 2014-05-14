@@ -198,7 +198,6 @@
                         <li><a href="#" onclick="render('../plan/admin.php');">Plan</a></li>
                         <li><a href="#" onclick="render('../tarea/admin.php');">Tarea</a></li>
                         <li><a href="#" onclick="render('../grupo/admin.php');">Grupo</a></li>	
-                        <li><a href="#">Contacto</a></li>  
                         <li><a href="../chat/index.php">Chat</a></li> 
                         <li><a href="../chat/logout.php">Logout</a></li>
                     </ul>
@@ -209,12 +208,19 @@
                             <li class = "active"><a href="#">Inicio</a></li> <a style = "font-size: 0px;"> | </a>
                             <li><a href="#" onclick="render('../plan/admin.php');">Plan</a></li>
                             <li><a href="#" onclick="render('../tarea/admin.php');">Tarea</a></li>
-                            <li><a href="#" onclick="render('../grupo/admin.php');">Grupo</a></li>	
-                            <li><a href="#">Contacto</a></li>  
-                            <li><a href="#">Acerca de</a></li> 
-                            <li><a href="#">Logout</a></li>
+                            <li><a href="#" onclick="render('../grupo/admin.php');">Grupo</a></li>
+                            <li><a href="../chat/index.php">Chat</a></li> 
+                            <li><a href="../chat/logout.php">Logout</a></li>
                         </ul>
                     <?php
+                    }else{
+                        if($_SESSION['tipo_usuario'] == $USUARIO_ALUMNO){ ?>
+                            <ul class="menu">
+                            <li class = "active"><a href="#">Inicio</a></li> <a style = "font-size: 0px;"> | </a>
+                            <li><a href="../chat/index.php">Chat</a></li> 
+                            <li><a href="../chat/logout.php">Logout</a></li>
+                            </ul>
+                       <?php }
                     }
                 }
             ?>
