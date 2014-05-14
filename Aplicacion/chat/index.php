@@ -1,12 +1,12 @@
 <?php
 
-session_start();
+/*session_start();
 
 if(!isset($_SESSION['logueado']) && $_SESSION['logueado']!='si')
 {
 	header('Location: login.php');
 	exit();
-}
+}*/
 ?>
 		
 <!DOCTYPE html>
@@ -22,6 +22,10 @@ if(!isset($_SESSION['logueado']) && $_SESSION['logueado']!='si')
 		<script src="ckeditor/ckeditor.js"></script>
         <script src = "jquery-1.11.0.min.js" type = "text/javascript"></script>
 		
+		 
+		<script src="../pizarra/analizador/AnalizadorLexico.js"></script>
+        <script src="../pizarra/analizador/Token.js"></script>
+        <script src="../pizarra/analizador/Pila.js"></script>
 		 
 		 
 		<script src="js/jquery-1.10.2.js"></script>
@@ -209,9 +213,28 @@ function get_new_messages_general(){
 <div id = "ckeditor-panel">
 
 <textarea id="texto" name="texto" cols="" rows=""></textarea>
-
+<input type ="submit" id="enviar" name="enviar" value="Enviar">
 			<script>
                 CKEDITOR.replace('texto');
+				$('#enviar').click(function(){
+                    var analizar = new AnalizadorLexico();
+                    
+                    var editorTexto = CKEDITOR.instances.texto;
+                    var contenido = editorTexto.getData();
+                    
+                    var tokens = analizar.obtenerTokens(contenido);
+                    for (var i = 0; i < analizar.obtenerTamanio(); i++) {
+                        editorTexto.insertHtml("<p class=\"error\">" + tokens[i][0] + " -- " + tokens[i][1] +"</p><br/>");
+                    }
+                    
+                    var analizadorSintactico = new AnalizadorSintactico();
+                    analizadorSintactico.validarParentisis(tokens,analizar.obtenerTamanio());
+                    for (var i = 0; i < analizadorSintactico.obtenerErrores().length; i++) {
+                        editorTexto.insertHtml("<p>Error: " + analizadorSintactico.obtenerErrores()[i] + "</p><br/>");
+                    }
+                    
+                    
+                });
             </script>
 
 </div>
