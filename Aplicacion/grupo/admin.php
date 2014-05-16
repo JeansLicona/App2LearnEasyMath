@@ -31,7 +31,7 @@ $USUARIO_ADMINISTRADOR = 1;
 $USUARIO_TUTOR=2;
 session_start();
 if (isset($_SESSION['tipo_usuario'])) {
-    if ($_SESSION['tipo_usuario'] == $USUARIO_ADMINISTRADOR  &&
+    if ($_SESSION['tipo_usuario'] == $USUARIO_ADMINISTRADOR  ||
             $_SESSION['tipo_usuario'] == $USUARIO_TUTOR) {
         ?>
         <h1>Administración de Grupo</h1>
