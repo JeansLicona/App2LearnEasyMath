@@ -205,7 +205,6 @@ button, html input[type="button"], input[type="reset"], input[type="submit"] {
 
 #name_user{
 	height:20px;
-	//background-color:white;
 }
 #date_hour{
 	padding-left:300px;
@@ -226,7 +225,7 @@ color:#003399;
 #ckeditor-panel{
 	width: 750px;
 	float: right;
-	margin-top: -45%;
+	margin-top: -48%;
 }
 
 
