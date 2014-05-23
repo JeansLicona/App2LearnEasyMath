@@ -1,5 +1,11 @@
 <?php
     session_start();
+
+    if (!isset($_SESSION['logueado']) && $_SESSION['logueado'] != 'si') {
+        header('Location: login.php');
+        exit();
+    }
+
     $USUARIO_ADMINISTRADOR = 1;
     $USUARIO_TUTOR = 2;
     $USUARIO_ALUMNO = 3;
@@ -184,8 +190,16 @@
         </style>
     </head>
     <body>
+
+        </br>
+        </br>
+
+        <div id = "header_login">
+            <img src = "../estilos/imagenes/header.png" id = "header"/>
+            <hr width="100%" size="8px" color="#2D2558"/> 
+        </div>
         <div id="menu-principal">
-            <?php if ($_SESSION['tipo_usuario'] == $USUARIO_ADMINISTRADOR) { ?>
+            <?php if (isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] == $USUARIO_ADMINISTRADOR) { ?>
                     <ul class="menu">
                         <li class = "active"><a href="#">Inicio</a></li> <a style = "font-size: 0px;"> | </a>
                         <li><a href="#">Administracion</a>
@@ -201,8 +215,9 @@
                         <li><a href="../chat/index.php">Chat</a></li> 
                         <li><a href="../chat/logout.php">Logout</a></li>
                     </ul>
-                <?php } else {
-                    if ($_SESSION['tipo_usuario'] == $USUARIO_TUTOR) {
+                <?php
+                } else {
+                    if (isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] == $USUARIO_TUTOR) {
                         ?>
                         <ul class="menu">
                             <li class = "active"><a href="#">Inicio</a></li> <a style = "font-size: 0px;"> | </a>
@@ -212,15 +227,17 @@
                             <li><a href="../chat/index.php">Chat</a></li> 
                             <li><a href="../chat/logout.php">Logout</a></li>
                         </ul>
-                    <?php
-                    }else{
-                        if($_SESSION['tipo_usuario'] == $USUARIO_ALUMNO){ ?>
+                        <?php
+                    } else {
+                        if (isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] == $USUARIO_ALUMNO) {
+                            ?>
                             <ul class="menu">
-                            <li class = "active"><a href="#">Inicio</a></li> <a style = "font-size: 0px;"> | </a>
-                            <li><a href="../chat/index.php">Chat</a></li> 
-                            <li><a href="../chat/logout.php">Logout</a></li>
+                                <li class = "active"><a href="#">Inicio</a></li> <a style = "font-size: 0px;"> | </a>
+                                <li><a href="../chat/index.php">Chat</a></li> 
+                                <li><a href="../chat/logout.php">Logout</a></li>
                             </ul>
-                       <?php }
+                        <?php
+                        }
                     }
                 }
             ?>

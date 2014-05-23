@@ -6,23 +6,38 @@ body{
     font: 83.5% "Trebuchet MS", sans-serif;
     margin: 50px;
 	font-size: 14px;
-	background-color: #e7ebf2;
+	background-color: #FFFFFF;
 }
 			
 #login{
 	padding-top: 40px;
 	padding-bottom: 40px;
-	background-color: #eee;
+	background-color: #FFFFFF;
   }
   
 /*LOGIN CSS*/
+
+#header_login{
+	margin-top: -100px;
+}
+
+#result_login{
+	font-size:18px;
+	color:red;
+}
+
+#header{
+	
+	width: 100%;
+
+}
 
 #div_form_login{
 	margin-right:auto;
 	margin-left:auto;
 	padding-left:15px;
 	padding-right:15px;
-    color: #333333;
+    color: #2D2558;
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     font-size: 14px;
     line-height: 1.42857;	
@@ -129,7 +144,7 @@ body{
 }
 
 .btn-primary {
-    background-color: #428BCA;
+    background-color: #BF942B;
     border-color: #357EBD;
     color: #FFFFFF;
 }
@@ -162,7 +177,7 @@ button, html input[type="button"], input[type="reset"], input[type="submit"] {
 
 
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open .dropdown-toggle.btn-primary{
-	background-color: #3276B1;
+	background-color: #2d2558;
     border-color: #285E8E;
     color: #FFFFFF;
 }
@@ -183,31 +198,6 @@ button, html input[type="button"], input[type="reset"], input[type="submit"] {
 		border-color: #4C66A4;
 		border-style: solid;
 		border-width: medium;
-		overflow-y: scroll;
-}
-
-#container_message{
-	background-color: #e7ebf2;
-	border-radius:5px;
-	border: 1px solid gray;
-	margin-top: 3px;
-	margin-left: 3px;
-	margin-right: 3px;
-	padding: 5px;
-}
-
-#container_text_message{
-	margin-left:25px;
-	background-color:white;
-	
-	font-size:18px;
-}
-
-#name_user{
-	height:20px;
-}
-#date_hour{
-	padding-left:300px;
 }
 
 #TxtMessage{
@@ -225,9 +215,8 @@ color:#003399;
 #ckeditor-panel{
 	width: 750px;
 	float: right;
-	margin-top: -48%;
+	margin-top: -45%;
 }
-
 
 /*  END CHAT CSS  */
 			
@@ -272,8 +261,8 @@ color:#003399;
 			
 			
 .menu {
-    background-color: #EEEEEE;
-    border: 1px solid #CCCCCC;
+    background-color: white;
+    border: 1px solid #2d2558;
     border-radius: 5px;
 }
 
@@ -293,10 +282,10 @@ ul, ol {
 }
 
 .menu > .active > a, .menu > .active > a:hover, .menu > .active > a:focus {
-    background-color: #DDDDDD;
-    background-image: none;
-    box-shadow: 0 3px 7px rgba(0, 0, 0, 0.15) inset;
-
+    background-color: white;
+    text-decoration: underline;
+	color: #c68d2a;
+    
 	}
 	
 #contenido{
