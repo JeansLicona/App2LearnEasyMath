@@ -795,10 +795,11 @@ body .ui-tooltip {
 .ui-widget button {
 	font-family: Trebuchet MS,Tahoma,Verdana,Arial,sans-serif;
 	font-size: 1em;
+        border-color: #f99f96;
 }
 .ui-widget-content {
 	border: 1px solid #dddddd;
-	background: #eeeeee url(images/ui-bg_highlight-soft_100_eeeeee_1x100.png) 50% top repeat-x;
+	background: red url(images/ui-bg_highlight-soft_100_eeeeee_1x100.png) 50% top repeat-x;
 	color: #333333;
 }
 .ui-widget-content a {
@@ -813,6 +814,9 @@ body .ui-tooltip {
 .ui-widget-header a {
 	color: #ffffff;
 }
+
+
+
 
 /* Interaction states
 ----------------------------------*/

@@ -5,10 +5,13 @@ if (isset($_SESSION['tipo_usuario'])) {
     if ($_SESSION['tipo_usuario'] == $USUARIO_ADMINISTRADOR) {
         ?>
         <h1>Administración de alumnos</h1>
+        </br>
         <a href="#" id="dialog-create-link" 
            class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
            role="button" aria-disabled="false">
                 <span class="ui-button-text">Agregar alumno</span></a>
+        </br>
+        </br>
         <div id="dialog-create" title="Alta de alumno">
             <div id="error"></div>
             <form action="../alumno/crearAlumno.php" id="dialog-create-form" method="post">
@@ -70,8 +73,8 @@ if (isset($_SESSION['tipo_usuario'])) {
             addColumnTable($alumno['institucion']);
             addColumnTable($alumno['matricula']);
             addColumnTable($alumno['correo']);
-            addColumnTable('<a href="../alumno/formUpdate.php?id=' . $alumno['id_alumno'] . '" class="update-option">Editar alumno</a>
-        <a href="../alumno/delete.php?id=' . $alumno['id_alumno'] . '" class="delete-option">Eliminar alumno</a>');
+            addColumnTable('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../alumno/formUpdate.php?id=' . $alumno['id_alumno'] . '" class="update-option">Editar alumno</a>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../alumno/delete.php?id=' . $alumno['id_alumno'] . '" class="delete-option">Eliminar alumno</a>');
             echo '</tr>';
         }
         echo '

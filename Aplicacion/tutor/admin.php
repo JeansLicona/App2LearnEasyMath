@@ -6,10 +6,13 @@ if (isset($_SESSION['tipo_usuario'])) {
     if ($_SESSION['tipo_usuario'] == $USUARIO_ADMINISTRADOR) {
         ?>
 <h1>Administracion de Tutor</h1>
+</br>
         <a href="#" id="dialog-create-link" 
            class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
            role="button" aria-disabled="false">
                 <span class="ui-button-text">Agregar tutor</span></a>
+</br>
+</br>
 <div id="dialog-create" title="Alta de Tutor">
     <div id="error"></div>
     <form action="../tutor/crearTutor.php" id="dialog-create-form" method="post">
@@ -64,8 +67,8 @@ foreach ($tutores as $tutor) {
     addColumnTable($tutor['fecha_nacimiento']);
     addColumnTable($tutor['fecha_ingreso']);
     addColumnTable($tutor['correo']);
-    addColumnTable('<a href="../tutor/formUpdate.php?id=' . $tutor['id_tutor'] . '" class="update-option">Editar tutor</a>
-        <a href="../tutor/delete.php?id=' . $tutor['id_tutor'] . '" class="delete-option">Eliminar tutor</a>');
+    addColumnTable('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../tutor/formUpdate.php?id=' . $tutor['id_tutor'] . '" class="update-option">Editar tutor</a>
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="../tutor/delete.php?id=' . $tutor['id_tutor'] . '" class="delete-option">Eliminar tutor</a>');
     echo '</tr>';
 }
 echo '
