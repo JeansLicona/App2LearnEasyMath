@@ -1,14 +1,14 @@
 <?php
-    session_start();
+session_start();
 
-    if (!isset($_SESSION['logueado']) && $_SESSION['logueado'] != 'si') {
-        header('Location: login.php');
-        exit();
-    }
+if (!isset($_SESSION['logueado']) && $_SESSION['logueado'] != 'si') {
+    header('Location: login.php');
+    exit();
+}
 
-    $USUARIO_ADMINISTRADOR = 1;
-    $USUARIO_TUTOR = 2;
-    $USUARIO_ALUMNO = 3;
+$USUARIO_ADMINISTRADOR = 1;
+$USUARIO_TUTOR = 2;
+$USUARIO_ALUMNO = 3;
 ?>
 <html>
     <head>
@@ -181,6 +181,29 @@
                         $('table#admin-table').dataTable({
                             "sScrollY": "200px",
                             "bPaginate": false,
+                            "language": {
+                                "emptyTable": "No hay datos disponibles",
+                                "info": "Mostrar _INICIO_ AL _FIN_ del _TOTAL_ entradas",
+                                "infoEmpty": "Mostrando 0 a 0 de 0 entradas",
+                                "infoFiltered": "(Filtrar del _MAX_ total de entradas)",
+                                "infoPostFix": "",
+                                "thousands": ",",
+                                "lengthMenu": "Mpstra _MENU_ entradas",
+                                "loadingRecords": "Cargando...",
+                                "processing": "Procesando...",
+                                "search": "Busqueda:",
+                                "zeroRecords": "No se encontraron resultados",
+                                "paginate": {
+                                    "first": "Primero",
+                                    "last": "Ultimo",
+                                    "next": "Siguiente",
+                                    "previous": "Anterior"
+                                },
+                                "aria": {
+                                    "sortAscending": ": activar para ordenar columnas de manera acendente",
+                                    "sortDescending": ": activar para ordenar columnas de manera descendente"
+                                }
+                            }
                         });
                     }
                 }, "html");
@@ -201,46 +224,46 @@
         </div>
         <div id="menu-principal">
             <?php if (isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] == $USUARIO_ADMINISTRADOR) { ?>
+                <ul class="menu">
+                    <li class = "active"><a href="#">Inicio</a></li> <a style = "font-size: 0px;"> | </a>
+                    <li><a href="#">Administracion</a>
+                        <ul>
+                            <li><a href="#" onclick="render('../alumno/admin.php');">Alumnos</a>
+                            </li>
+                            <li><a href="#" onclick="render('../tutor/admin.php');">Tutores</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#" onclick="render('../plan/admin.php');">Plan</a></li>
+                    <li><a href="#" onclick="render('../tarea/admin.php');">Tarea</a></li>
+                    <li><a href="#" onclick="render('../grupo/admin.php');">Grupo</a></li>	
+                    <li><a href="../chat/index.php">Chat</a></li> 
+                    <li><a href="../chat/logout.php">Logout</a></li>
+                </ul>
+                <?php
+            } else {
+                if (isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] == $USUARIO_TUTOR) {
+                    ?>
                     <ul class="menu">
                         <li class = "active"><a href="#">Inicio</a></li> <a style = "font-size: 0px;"> | </a>
-                        <li><a href="#">Administracion</a>
-                            <ul>
-                                <li><a href="#" onclick="render('../alumno/admin.php');">Alumnos</a>
-                                </li>
-                                <li><a href="#" onclick="render('../tutor/admin.php');">Tutores</a></li>
-                            </ul>
-                        </li>
                         <li><a href="#" onclick="render('../plan/admin.php');">Plan</a></li>
                         <li><a href="#" onclick="render('../tarea/admin.php');">Tarea</a></li>
-                        <li><a href="#" onclick="render('../grupo/admin.php');">Grupo</a></li>	
+                        <li><a href="#" onclick="render('../grupo/admin.php');">Grupo</a></li>
                         <li><a href="../chat/index.php">Chat</a></li> 
                         <li><a href="../chat/logout.php">Logout</a></li>
                     </ul>
-                <?php
+                    <?php
                 } else {
-                    if (isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] == $USUARIO_TUTOR) {
+                    if (isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] == $USUARIO_ALUMNO) {
                         ?>
                         <ul class="menu">
                             <li class = "active"><a href="#">Inicio</a></li> <a style = "font-size: 0px;"> | </a>
-                            <li><a href="#" onclick="render('../plan/admin.php');">Plan</a></li>
-                            <li><a href="#" onclick="render('../tarea/admin.php');">Tarea</a></li>
-                            <li><a href="#" onclick="render('../grupo/admin.php');">Grupo</a></li>
                             <li><a href="../chat/index.php">Chat</a></li> 
                             <li><a href="../chat/logout.php">Logout</a></li>
                         </ul>
                         <?php
-                    } else {
-                        if (isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] == $USUARIO_ALUMNO) {
-                            ?>
-                            <ul class="menu">
-                                <li class = "active"><a href="#">Inicio</a></li> <a style = "font-size: 0px;"> | </a>
-                                <li><a href="../chat/index.php">Chat</a></li> 
-                                <li><a href="../chat/logout.php">Logout</a></li>
-                            </ul>
-                        <?php
-                        }
                     }
                 }
+            }
             ?>
 
         </div>
