@@ -45,6 +45,7 @@
                     }
                 }, 3000);
                 $("#ckeditor-panel").hide();
+                $("#idGrupo").hide();
             });
         </script>
 
@@ -171,7 +172,8 @@
                     $("#ckeditor-panel").show();
                     $("#container_messages").empty();
                     tareas_archivo_grupo(item.value);
-                }else{
+                    $("#idGrupo").val(item.value);
+                } else {
                     $("#type_chat").val('general');
 
                     $("#container_messages").empty();
@@ -296,9 +298,17 @@
             </div>
             </br>
             <h4>Subir archivos:</h4>
-            <input type="file" id="archivo" class="btn btn-lg btn-primary btn-chat"/>
+            <form action = "subirArchivos.php" method = "POST" enctype="multipart/form-data">  
 
-            <script src="js/test.js"></script>
+                <label for = "imagen">Archivo: </label>
+                <input type="file" name="archivo" id="archivo" class="btn btn-lg btn-primary btn-chat"/>
+                <input type = "text" name="idGrupo" id="idGrupo" />
+
+                <input type = "submit" name="subir" value="Subir">	
+
+
+
+            </form>
             <div>Tarea:
                 <div id="tareas" name="tareas" >
 
