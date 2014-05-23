@@ -5,7 +5,6 @@ if (!isset($_SESSION['logueado']) && $_SESSION['logueado'] != 'si') {
     header('Location: login.php');
     exit();
 }
-
 $USUARIO_ADMINISTRADOR = 1;
 $USUARIO_TUTOR = 2;
 $USUARIO_ALUMNO = 3;
