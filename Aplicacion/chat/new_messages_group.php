@@ -5,7 +5,7 @@ isset($_GET['id_group']) && is_numeric($_GET['id_group']) &&
 isset($_GET['rand']) && is_numeric($_GET['rand']) )
 {
 
-include("lib.php");
+include("../validacion/lib.php");
 
 $link = connectDB();
 /*

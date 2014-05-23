@@ -11,14 +11,13 @@
     padding-left: 0;	
 	
 }
-
 .menu a
 {
     text-decoration: none;
 }
 .menu > li
 {
-    margin-left: 6%;
+    margin-left: 7%;
 }
 .menu > li:first
 {
@@ -30,14 +29,24 @@
     margin: 0;
     width: 100%;
     text-decoration: none;
-    color: #777777;
+    color: #ba1300;
+    font-weight: bold;
+}
+.menu > li > a:hover
+{
+    padding: 0px 10px;
+    margin: 0;
+    width: 100%;
+    text-decoration: none;
+    color: #2d2558;
+	text-decoration: underline;
     font-weight: bold;
 }
 div.box
 {
     position: absolute;
     z-index: -1;
-    background-color: #5CB85C;
+    background-color: white;
     left: 0;
     top: 0;
     border-radius: 4px 4px 0px 0px;
@@ -73,20 +82,18 @@ li.right-menu > a
     float: left;
     position: relative;
 }
-
 .menu ul
 {
     position: absolute;
     display: none;
     width: 200px;
     top: 2.5em; /*padding-right: 10px;*/
-
-    background-color: #5CB85C; /*-moz-opacity: .50;     filter: alpha(opacity=50);     opacity: .50;*/
+color: white;
+    background-color: #2d2558; /*-moz-opacity: .50;     filter: alpha(opacity=50);     opacity: .50;*/
     border-radius: 0px 4px 4px 4px;
     -moz-border-radius: 0px 4px 4px 4px;
     -webkit-border-radius: 0px 4px 4px 4px;
 }
-
 .menu li ul a
 {
     width: 180px;
@@ -105,7 +112,6 @@ li.right-menu > a
 {
     top: auto;
 }
-
 .menu li ul ul
 {
     left: 198px; /*margin: 0px 0 0 10px;*/
@@ -113,9 +119,6 @@ li.right-menu > a
 .menu-item-selected > a
 {
     background-color: #398439; 
-    -moz-opacity: .50;
-    filter: alpha(opacity=50);
-    opacity: .50;
 }
 .menu-item-selected > a:hover
 {

@@ -4,7 +4,7 @@ if(isset($_GET['id_last_message']) && is_numeric($_GET['id_last_message']) &&
 isset($_GET['rand']) && is_numeric($_GET['rand']) )
 {
 
-include("lib.php");
+include("../validacion/lib.php");
 
 $link = connectDB();
 
