@@ -20,13 +20,13 @@ isset($_POST['content_ckeditor']) )
 
 	$content = $_POST['content_ckeditor'];
 	//$id_tarea = $_POST['id'];
-	$id_tarea = 1;
+	$id_tarea = $_POST['id'];
 	
 	$sql_update = "UPDATE tarea SET contenido='$content' WHERE id_tarea='$id_tarea'";
 	
     if($result = mysqli_query($link,$sql_update)) 
 	{
-		//$all_content = array("message"=>"<div> Fco: ".$message."<br />".$date_array[1]." ". $current_date ."</div>");
+		$all_content = array("message"=>"<div> Fco: ".$message."<br /></div>");
 
      } else {
         

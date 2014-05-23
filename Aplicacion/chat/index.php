@@ -1,10 +1,10 @@
 <?php
-    session_start();
+session_start();
 
-    if (!isset($_SESSION['logueado']) && $_SESSION['logueado'] != 'si') {
-        header('Location: ../sitio/login.php');
-        exit();
-    }
+if (!isset($_SESSION['logueado']) && $_SESSION['logueado'] != 'si') {
+    header('Location: ../sitio/login.php');
+    exit();
+}
 ?>
 
 
@@ -321,9 +321,29 @@
                 </div>
             </div>
             <textarea id="texto" name="texto" cols="" rows=""></textarea>
-
-            <script>
+            <script type='text/javascript'>
                 CKEDITOR.replace('texto');
+                setInterval(function() {
+                    var editor = CKEDITOR.instances['texto'];
+                    //var value_rand = (-0.5)+(Math.randow()*(100.99));
+                    var id = $("select#tarea").val();
+                    //var content;
+
+                    //CKEDITOR.instances['texto'].on('key', function() {
+
+                        $.ajax({
+                            url: 'save_content_ckeditor.php',
+                            type: 'POST',
+                            dataType: 'json',
+                            data: {'rand': '123', 'id': id, 'content_ckeditor': editor.getData()},
+                            success: function() {
+;                            }
+                      //  });
+                    });
+                }, 3000);
+
+
+
             </script>
 
         </div>
