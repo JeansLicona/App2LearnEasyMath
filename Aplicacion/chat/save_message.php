@@ -4,7 +4,7 @@ session_start();
 
 if(!isset($_SESSION['logueado']) && $_SESSION['logueado']!='si')
 {
-	header('Location: login.php');
+	header('Location: ../sitio/login.php');
 	exit();
 }
 
@@ -16,7 +16,7 @@ if(isset($_POST['TxtMessage']) && $_POST['TxtMessage']!='' &&
 ($_POST['TypeChat']=='general' || $_POST['TypeChat']=='group') &&
 $_SESSION['id_usuario'] && is_numeric($_SESSION['id_usuario']) )
 {
-	include("lib.php");
+	include("../validacion/lib.php");
 
 	$link = connectDB();
 

@@ -5,13 +5,13 @@ session_start();
 if(!isset($_SESSION['logueado']) && $_SESSION['logueado']!='si' && 
 isset($_SESSION['id_usuario']) && isset($_SESSION['tipo_usuario']) && is_numeric($_SESSION['tipo_usuario']))
 {
-	header('Location: login.php');
+	header('Location: ../sitio/login.php');
 	exit();
 }
 
 if(isset($_GET['rand']) && !empty($_GET['rand']) && is_numeric($_GET['rand']))
 {
-include("lib.php");
+include("../validacion/lib.php");
 
 $link = connectDB();
 

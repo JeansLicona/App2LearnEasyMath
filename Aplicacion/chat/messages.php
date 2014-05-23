@@ -1,6 +1,6 @@
 <?php
 
-include("lib.php");
+include("../validacion/lib.php");
 
 $link = connectDB();
 
