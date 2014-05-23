@@ -13,7 +13,7 @@
         <link href="../estilos/table.css" rel="stylesheet"> 
         <script src="../jquery/js/jquery-1.10.2.js"></script>
         <script src="../jquery/js/jquery-ui-1.10.4.custom.js"></script>
-        <script type="text/javascript" src="../extensiones/DataTables-1.8.0/media/js/jquery.dataTables.js"></script>
+        <script type="text/javascript" src="../extensiones/DataTables-1.10.0/media/js/jquery.dataTables.js"></script>
 
         <script type="text/javascript" src="../extensiones/jqsimplemenu/js/jqsimplemenu.js"></script>
         <link rel="stylesheet" href="../extensiones/jqsimplemenu/css/jqsimplemenu.css" type="text/css" media="screen" />

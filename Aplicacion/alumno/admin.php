@@ -5,8 +5,10 @@ if (isset($_SESSION['tipo_usuario'])) {
     if ($_SESSION['tipo_usuario'] == $USUARIO_ADMINISTRADOR) {
         ?>
         <h1>Administración de alumnos</h1>
-        <p><a href="#" id="dialog-create-link" class="ui-state-default ui-corner-all">
-                <span class="ui-icon ui-icon-newwin"></span>Agregar alumno</a></p>
+        <a href="#" id="dialog-create-link" 
+           class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
+           role="button" aria-disabled="false">
+                <span class="ui-button-text">Agregar alumno</span></a>
         <div id="dialog-create" title="Alta de alumno">
             <div id="error"></div>
             <form action="../alumno/crearAlumno.php" id="dialog-create-form" method="post">
