@@ -1,47 +1,13 @@
 <?php
-    include_once '../util/ComandosBD.php';
-
-
     session_start();
 
     if (!isset($_SESSION['logueado']) && $_SESSION['logueado'] != 'si') {
         header('Location: ../sitio/login.php');
         exit();
     }
-
-    function buscarTarea() {
-        $query = new ComandosBD();
-        $tareasEle = $query->query(array('from' => 'tarea'/* , 'where' => 'id_tarea=:id',
-                  'params' => array(':id' => $tarea) */));
-        $tareaSelec = '<select id="tarea" name="tarea" placeholder="Tarea" onchange="desplegarTexto(this)">';
-        $tareaSelec.='<option>Seleccione Tarea</option>';
-        foreach ($tareasEle as $tarea) {
-            $tareaSelec.='<option value="' . $tarea['id_tarea'] . '">' . $tarea['nombre'] . '</option>';
-        }
-        $tareaSelec.='</select> <br />';
-        return $tareaSelec;
-    }
-
-    function buscarArchivos() {
-        $query = new ComandosBD();
-        $archivosEle = $query->query(array('from' => 'archivo' /* , 'where' => 'grupo=:id',
-                  'params' => array(':id' => $grupo) */));
-        $archivoSelec = '<select id="archivo_gp" name="archivo_gp" placeholder="Archivo" onchange="desplegarArchivo(this)">';
-        $archivoSelec.='<option>Seleccione Archivo</option>';
-        foreach ($archivosEle as $archivo) {
-            $archivoSelec.='<option value="' . $archivo['id_archivo'] . '">' . $archivo['nombre'] . '</option>';
-        }
-        $archivoSelec.='</select> <br />';
-        return $archivoSelec;
-    }
 ?>
 
-<div id="menu-principal">
-    <ul class="menu">
-        <li class = "active"><a href="../sitio/index.php">Inicio</a></li> <a style = "font-size: 0px;"> | </a>
-        <li><a href="../chat/logout.php">Logout</a></li>
-    </ul>
-</div>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -78,7 +44,7 @@
                         get_messages_group();
                     }
                 }, 3000);
-
+                $("#ckeditor-panel").hide();
             });
         </script>
 
@@ -197,16 +163,14 @@
 
             function start_messages_group(item) {
 
-                var name_group = item.text;
-
                 $("#id_group").val(item.value);
                 $("#type_chat").val('group');
                 $("#id_last_message").val(0);
 
-                $("#title_chat").html("Grupo " + name_group);
-
+                $("#title_chat").html("Grupo");
+                $("#ckeditor-panel").show();
                 $("#container_messages").empty();
-
+                tareas_archivo_grupo(item.value);
             }
 
             function get_messages_group() {
@@ -231,12 +195,49 @@
                 });
             }
 
+            function tareas_archivo_grupo(id_grupo) {
+                $.ajax({
+                    url: 'archivos_grupo.php',
+                    type: 'GET',
+                    dataType: 'json',
+                    data: {'id_grupo': id_grupo},
+                    success: function(answer) {
+
+                        if (answer.content != '') {
+                            $("#archivos_select").html(answer.archivo);
+                            $("#tareas").html(answer.tarea);
+                        }
+                    }
+                });
+            }
+
         </script>
 
     </head>
     <body>
 
-        <h2> CHAT </h2>
+        </br>
+        </br>
+
+        <div id = "header_login">
+            <img src = "../estilos/imagenes/header.png" id = "header"/>
+            <hr width="100%" size="8px" color="#2D2558"/> 
+        </div>
+
+        <div id="menu-principal">
+            <ul class="menu">
+                <li class = "active"><a href="../sitio/index.php">Inicio</a></li> <a style = "font-size: 0px;"> | </a>
+                <li><a href="../chat/logout.php">Logout</a></li>
+            </ul>
+        </div>
+        <!-- MI CAMBIO -->
+        <!-- otro cambio -->
+        </br>
+        </br>
+        <div id = "banner-chat">
+            <img src = "../estilos/imagenes/bannerChat.png" class = "banner"/>
+        </div>
+        <!-- fin otro cambio -->
 
         <input type="hidden" id="type_chat" name="type_chat" value="general" />
         <input type="hidden" id="id_group" name="id_group" value="-1" />
@@ -252,7 +253,7 @@
             <div id="container_groups">
             </div>
 
-            <input type="button" id="see_general_chat" value="Chat general" />
+            <input type="button" id="see_general_chat" value="Chat general"/>
 
             <div id="groups">
             </div>			
@@ -279,12 +280,25 @@
         <br>
         <br>
         <div id = "ckeditor-panel">
-            <div id="tareas" name="tareas" >
-                Seleccione tarea: <?php echo buscarTarea(); ?>
+
+            <div id = "banner-chat">
+                <img src = "../estilos/imagenes/bannerPizarra.png" class = "banner"/>
+            </div>
+            </br>
+            <h4>Subir archivos:</h4>
+            <input type="file" id="archivo" class="btn btn-lg btn-primary btn-chat"/>
+
+            <script src="js/test.js"></script>
+            <div>Tarea:
+                <div id="tareas" name="tareas" >
+                   
+                </div>
             </div>
 
-            <div id="archivos_select" name="archivos_select" >
-                Seleccione Archivo: <?php echo buscarArchivos(); ?>
+            <div>Archivo:
+                <div id="archivos_select" name="archivos_select" >
+                    
+                </div>
             </div>
             <textarea id="texto" name="texto" cols="" rows=""></textarea>
 
@@ -293,10 +307,7 @@
             </script>
 
         </div>
-        <h4>Subir archivos al sevidor:</h4>
-        <input type="file" id="archivo" class="btn btn-lg btn-primary btn-chat"/>
 
-        <script src="js/test.js"></script>
 
         <script type="text/javascript">
 

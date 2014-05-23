@@ -187,6 +187,13 @@ button, html input[type="button"], input[type="reset"], input[type="submit"] {
 
 /*  CHAT CSS  */
 
+.banner{
+    
+    width: 40%;
+    height: 55px; 
+    
+}
+
 #container_dialog{
 	display:none;
 	}
@@ -215,7 +222,7 @@ color:#003399;
 #ckeditor-panel{
 	width: 750px;
 	float: right;
-	margin-top: -45%;
+	margin-top: -53%;
 }
 
 /*  END CHAT CSS  */
