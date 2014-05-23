@@ -62,7 +62,7 @@
                     $("#container_messages").empty();
 
                     $("#id_last_message").val(0);
-
+                    $("#ckeditor-panel").hide();
                     $("#title_chat").html("Chat general");
                 });
             });
@@ -162,15 +162,25 @@
         <script type="text/javascript">
 
             function start_messages_group(item) {
+                if (item.value != 0) {
+                    $("#id_group").val(item.value);
+                    $("#type_chat").val('group');
+                    $("#id_last_message").val(0);
 
-                $("#id_group").val(item.value);
-                $("#type_chat").val('group');
-                $("#id_last_message").val(0);
+                    $("#title_chat").html("Grupo");
+                    $("#ckeditor-panel").show();
+                    $("#container_messages").empty();
+                    tareas_archivo_grupo(item.value);
+                }else{
+                    $("#type_chat").val('general');
 
-                $("#title_chat").html("Grupo");
-                $("#ckeditor-panel").show();
-                $("#container_messages").empty();
-                tareas_archivo_grupo(item.value);
+                    $("#container_messages").empty();
+
+                    $("#id_last_message").val(0);
+                    $("#ckeditor-panel").hide();
+                    $("#title_chat").html("Chat general");
+                }
+
             }
 
             function get_messages_group() {
@@ -291,13 +301,13 @@
             <script src="js/test.js"></script>
             <div>Tarea:
                 <div id="tareas" name="tareas" >
-                   
+
                 </div>
             </div>
 
             <div>Archivo:
                 <div id="archivos_select" name="archivos_select" >
-                    
+
                 </div>
             </div>
             <textarea id="texto" name="texto" cols="" rows=""></textarea>

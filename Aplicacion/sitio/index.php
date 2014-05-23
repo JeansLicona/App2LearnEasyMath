@@ -12,6 +12,7 @@
 ?>
 <html>
     <head>
+        <title>App2LearnEasyMath</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
         <link href="../jquery/css/ui-darkness/jquery-ui-1.10.4.custom.css" rel="stylesheet">

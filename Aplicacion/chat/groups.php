@@ -14,7 +14,7 @@
         $link = connectDB();
 
         $content = '<select id="select_group" onchange="start_messages_group(this)">';
-        $content .= '<option>Seleccionar grupo</option>';
+        $content .= '<option value="0">Seleccionar grupo</option>';
 
         if ($_SESSION['tipo_usuario'] == 1) {
 
